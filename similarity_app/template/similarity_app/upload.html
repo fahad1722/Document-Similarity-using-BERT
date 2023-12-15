@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Similarity</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #080000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        margin: 20px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2f2f2;
+      }
+
+      .left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        padding: 40px;
+        animation: fadeInLeft 1s ease-in-out;
+      }
+      .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: #f2f2f2;
+        padding: 40px;
+      }
+
+      .right-heading {
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #333;
+      }
+
+      .left img {
+        width: 300px;
+        height: 300px;
+        margin-bottom: 0px;
+      }
+
+      .heading {
+        color: white;
+        font-size: 26px;
+        margin-bottom: 0px;
+        text-align: center;
+        position: relative;
+        background-color: black;
+        background-image: linear-gradient(
+          to right,
+          red,
+          orange,
+          yellow,
+          green,
+          blue,
+          indigo,
+          violet
+        );
+        background-size: 200% auto;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        animation: rainbowSlider 3s linear infinite;
+      }
+
+      @keyframes rainbowSlider {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      p {
+        color: #666;
+        text-align: justify;
+      }
+
+      form {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        font-family: Arial, sans-serif;
+        color: #444;
+      }
+
+      input[type="file"] {
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      input[type="submit"] {
+        background-color: #0066cc;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #004080;
+      }
+
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      .navbar a {
+        float: left;
+        width: 120px;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        font-size: 17px;
+        flex: 1;
+      }
+
+      .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .navbar a.active {
+        background-color: #004080;
+        color: white;
+      }
+      @keyframes fadeInLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a class="active" href="#">Home</a>
+      <a href="doc.html">Docs</a>
+    </div>
+    <h1 class="heading">Document Similarity Using BERT</h1>
+    <div class="container">
+      <div class="left">
+        <img
+          src="https://towardsml.files.wordpress.com/2019/09/bert.png"
+          alt="BERT Image"
+        />
+        <p>
+          Hey, I'm BERT! I'm a powerful pre-trained natural language processing
+          model developed by Google. I've revolutionized the field of NLP with
+          my ability to understand the context and nuances of language. Whether
+          it's analyzing document similarity, performing text classification, or
+          answering questions, I strive to provide highly accurate results. With
+          my deep understanding of language, I can uncover hidden patterns and
+          relationships within text data.
+        </p>
+      </div>
+      <div class="right">
+        <div class="right-heading">
+          <h1>Document Similarity</h1>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label for="document1">Upload Document 1:</label>
+          <input type="file" name="document1" required /><br />
+          <label for="document2">Upload Document 2:</label>
+          <input type="file" name="document2" required /><br />
+          <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <input type="submit" value="Calculate Similarity" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
